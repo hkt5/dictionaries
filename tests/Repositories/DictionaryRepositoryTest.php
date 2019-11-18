@@ -203,11 +203,12 @@ class DictionaryRepositoryTest extends TestCase
         );
 
         // when
-        $result = DictionaryRepository::getInstance()->findById($request);
+        $result = DictionaryRepository::getInstance()->findTrashedById($request);
+        $result_data = $result->toArray();
 
         // then
-        $this->assertEquals(1, $result->id);
-        $this->assertEquals('dictionary', $result->name);
+        $this->assertEquals(1, $result_data['0']['id']);
+        $this->assertEquals('dictionary', $result_data['0']['name']);
     }
 
     public function testRestore() : void
@@ -264,7 +265,6 @@ class DictionaryRepositoryTest extends TestCase
         $result_array = $result->get(['*'])->toArray();
 
         // then
-        $this->assertEquals(1, $result['0']['id']);
-        $this->assertEquals('dictionary', $result['0']['name']);
+        $this->assertEmpty($result_array);
     }
 }

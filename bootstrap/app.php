@@ -25,6 +25,8 @@ $app->withFacades();
 
 $app->withEloquent();
 
+$app->configure('apidoc');
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
@@ -59,7 +61,7 @@ $app->singleton(
 
 $app->middleware([
      App\Http\Middleware\DBTransaction::class,
-    \App\Http\Middleware\LumenCors::class,
+     App\Http\Middleware\LumenCors::class,
  ]);
 
 // $app->routeMiddleware([
@@ -80,7 +82,7 @@ $app->middleware([
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-
+$app->register(\Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

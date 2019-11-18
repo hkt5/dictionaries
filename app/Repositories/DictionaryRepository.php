@@ -6,6 +6,8 @@ namespace App\Repositories;
 
 use App\Dictionary;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class DictionaryRepository
@@ -22,25 +24,25 @@ class DictionaryRepository
         return self::$instance;
     }
 
-    public function findAll()
+    public function findAll() : Builder
     {
 
         return Dictionary::withoutTrashed();
     }
 
-    public function findById(Request $request)
+    public function findById(Request $request) : Dictionary
     {
 
         return Dictionary::find($request->get('id'));
     }
 
-    public function findByName(Request $request)
+    public function findByName(Request $request) : Builder
     {
 
         return Dictionary::where('name', $request->get('name'));
     }
 
-    public function create(Request $request)
+    public function create(Request $request) : Dictionary
     {
 
         $dictionary = new Dictionary();
@@ -51,7 +53,7 @@ class DictionaryRepository
         return $dictionary;
     }
 
-    public function update(Request $request)
+    public function update(Request $request) : Dictionary
     {
 
         $dictionary = Dictionary::find($request->get('id'));
@@ -62,7 +64,7 @@ class DictionaryRepository
         return $dictionary;
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request) : Dictionary
     {
 
         $dictionary = Dictionary::find($request->get('id'));
@@ -70,27 +72,30 @@ class DictionaryRepository
         return $dictionary;
     }
 
-    public function findTrashed()
+    public function findTrashed() : Builder
     {
 
-        return Dictionary::withTrashed();
+        return Dictionary::onlyTrashed()->where('deleted_at', '!=', 'null');
     }
 
-    public function findTrashedById(Request $request)
+    public function findTrashedById(Request $request) : Collection
     {
 
-        return Dictionary::withTrashed()->where('id', $request->get('id'))->get();
+        return Dictionary::onlyTrashed()->where('id', $request->get('id'))
+            ->where('deleted_at', '!=', 'null')->get();
     }
 
-    public function restore(Request $request)
+    public function restore(Request $request) : ?Dictionary
     {
 
-        $dictionary = Dictionary::withTrashed()->where('id', $request->get('id'));
+        $dictionary = Dictionary::onlyTrashed()->where('id', $request->get('id'))
+            ->where('deleted_at', '!=', 'null')->first(['*']);
+        if(is_null($dictionary)) return null;
         $dictionary->restore();
         return $dictionary;
     }
 
-    public function forceDelete(Request $request)
+    public function forceDelete(Request $request) : Builder
     {
 
         $dictionary = Dictionary::withTrashed()->where('id', $request->get('id'));

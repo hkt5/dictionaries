@@ -11,6 +11,20 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+$router->get('/', 'FindAllDictionariesController@all');
+$router->get('/find-by-id/{id}', 'FindDictionaryByIdController@findById');
+$router->get('/find-by-name/{name}', 'FindDictionaryByNameController@findByName');
+$router->get('/find-trashed', 'FindTrashedDictionariesController@findTrashed');
+$router->get('/find-trashed/{id}', 'FindTrashedDictionaryByIdController@findTrashed');
+$router->get('/dictionary-items', 'FindAllDictionaryItemsController@all');
+$router->get('/dictionary-items/{id}', 'FindDictionaryItemByIdController@all');
+$router->post('/create', 'CreateDictionaryController@create');
+$router->post('/dictionary-item/create', 'CreateDictionaryItemController@create');
+$router->put('/update', 'UpdateDictionaryController@update');
+$router->put('/restore', 'RestoreDictionaryController@restore');
+$router->put('/dictionary-item/update', 'UpdateDictionaryItemController@update');
+$router->put('/dictionary-item/restore', 'RestoreDictionaryItemController@restore');
+$router->delete('/delete', 'DeleteDictionaryController@delete');
+$router->delete('/force-delete', 'ForceDeleteDictionaryController@forceDelete');
+$router->delete('/dictionary-item/delete', 'DeleteDictionaryItemController@delete');
+$router->delete('/dictionary-item/force-delete', 'ForceDeleteDictionaryItemController@forceDelete');

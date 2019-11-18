@@ -45,6 +45,25 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        $fe = \Symfony\Component\Debug\Exception\FlattenException::create($exception);
+
+        $statusCode = $fe->getStatusCode();
+        $code       = $fe->getCode();
+        $message    = $fe->getMessage();
+
+        /**
+         * This line of code resolves the issue
+         *
+         * To reproduce the issue :
+         * 1) Comment this following line of code
+         * 2) Provide a fake WSDL URL to the SoapClient
+         *
+         * Recommendation: Remove this line if you aren't using the SoapClient
+         */
+        error_clear_last();
+
+        return new \Illuminate\Http\JsonResponse(
+            ['content' => [], 'error_messages' => ['message' => $message, 'code' => $code]], $statusCode
+        );
     }
 }
