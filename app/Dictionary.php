@@ -17,4 +17,9 @@ class Dictionary extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = ['id', 'name'];
+
+    public function dictionaryItems()
+    {
+        return $this->hasMany('App\DictionaryItem');
+    }
 }

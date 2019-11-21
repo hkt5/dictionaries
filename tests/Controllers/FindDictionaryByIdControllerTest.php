@@ -2,6 +2,7 @@
 
 
 use App\Dictionary;
+use App\DictionaryItem;
 use Illuminate\Http\Response;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\WithoutEvents;
@@ -22,6 +23,12 @@ class FindDictionaryByIdControllerTest extends TestCase
         $dictionary->id = 1;
         $dictionary->name = 'dictionary';
         $dictionary->save();
+
+        $dictionaryItem = new DictionaryItem();
+        $dictionaryItem->id = 1;
+        $dictionaryItem->name = 'dictionary';
+        $dictionaryItem->dictionary_id = 1;
+        $dictionaryItem->save();
     }
 
     public function testFindDictionaryById() : void

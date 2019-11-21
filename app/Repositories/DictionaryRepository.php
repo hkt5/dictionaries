@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\Dictionary;
+use App\DictionaryItem;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -30,10 +31,14 @@ class DictionaryRepository
         return Dictionary::withoutTrashed();
     }
 
-    public function findById(Request $request) : Dictionary
+    public function findById(Request $request) : array
     {
 
-        return Dictionary::find($request->get('id'));
+        $dictionary = Dictionary::find($request->get('id'));
+        $items = DictionaryItem::where('dictionary_id', $dictionary->id)->get();
+        return [
+            'dictionary' => $dictionary, 'items' => $items,
+        ];
     }
 
     public function findByName(Request $request) : Builder

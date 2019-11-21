@@ -116,7 +116,7 @@ class CreateDictionaryItemControllerTest extends TestCase
         $result->seeJson($response);
     }
 
-    public function testCreateDictionaryItemWhenDictionaryNameHasAlreadyBeenTaken() : void
+    public function testCreateDictionaryItemWhenDictionaryItemNameHasAlreadyBeenTaken() : void
     {
 
         // given

@@ -252,7 +252,7 @@ class DictionaryItemsRepositoryTest extends TestCase
         );
 
         // when
-        $result = DictionaryItemsRepository::getInstance()->restore($request)->first(['*']);
+        $result = DictionaryItemsRepository::getInstance()->restore($request);
 
         // then
         $this->assertEquals(1, $result->id);

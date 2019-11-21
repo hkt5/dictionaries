@@ -58,8 +58,8 @@ class DictionaryRepositoryTest extends TestCase
         $result = DictionaryRepository::getInstance()->findById($request);
 
         // then
-        $this->assertEquals(1, $result->id);
-        $this->assertEquals('dictionary', $result->name);
+        $this->assertEquals(1, $result['dictionary']->id);
+        $this->assertEquals('dictionary', $result['dictionary']->name);
     }
 
     public function testFindByName() : void

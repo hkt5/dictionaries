@@ -69,6 +69,19 @@ class FindTrashedDictionaryByIdControllerTest extends TestCase
         $result->seeStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 
+    public function testFindTrashedDictionaryWhenIdIsNull() : void
+    {
+
+        // given
+        $id = null;
+
+        // when
+        $result = $this->get('/find-trashed/'.$id);
+
+        // then
+        $result->seeStatusCode(Response::HTTP_OK);
+    }
+
     public function testFindTrashedDictionaryWhenIdIsNotExisting() : void
     {
 

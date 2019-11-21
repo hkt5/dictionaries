@@ -19,6 +19,11 @@ class FindAllDictionariesController extends Controller
         $this->strategy = $strategy;
     }
 
+    /**
+     * Find all dictionaries.
+     *
+     * @response 200 {"content":[{"id":1,"name":"dictionary","deleted_at":null,"created_at":"2019-11-20 20:38:14","updated_at":"2019-11-20 20:38:14"}]}
+     */
     public function all(Request $request) : JsonResponse
     {
 

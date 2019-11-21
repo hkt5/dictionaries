@@ -80,12 +80,12 @@ class DictionaryItemsRepository
         return DictionaryItem::withTrashed()->where('id', $request->get('id'));
     }
 
-    public function restore(Request $request) : Builder
+    public function restore(Request $request) : ?DictionaryItem
     {
 
         $dictionary_item = DictionaryItem::onlyTrashed()->where('id', $request->get('id'));
         $dictionary_item->restore();
-        return $dictionary_item;
+        return DictionaryItem::find($request->get('id'));
     }
 
     public function forceDelete(Request $request) : Builder

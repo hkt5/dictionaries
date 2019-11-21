@@ -17,7 +17,11 @@ $router->get('/find-by-name/{name}', 'FindDictionaryByNameController@findByName'
 $router->get('/find-trashed', 'FindTrashedDictionariesController@findTrashed');
 $router->get('/find-trashed/{id}', 'FindTrashedDictionaryByIdController@findTrashed');
 $router->get('/dictionary-items', 'FindAllDictionaryItemsController@all');
-$router->get('/dictionary-items/{id}', 'FindDictionaryItemByIdController@all');
+$router->get('/dictionary-items/find-by-id/{id}', 'FindDictionaryItemByIdController@findById');
+$router->get('/dictionary-items/find-trashed', 'FindTrashedDictionaryItemsController@findTrashed');
+$router->get('/dictionary-items/find-single-trashed/{id}', 'FindTrashedDictionaryItemController@find');
+
+
 $router->post('/create', 'CreateDictionaryController@create');
 $router->post('/dictionary-item/create', 'CreateDictionaryItemController@create');
 $router->put('/update', 'UpdateDictionaryController@update');

@@ -47,7 +47,7 @@ class FindDictionaryByNameStrategy implements StrategyInterface
 
             return response()->json(
                 [
-                    'content' => ['dictionary' => DictionaryRepository::getInstance()->findByName($request)],
+                    'content' => ['dictionary' => DictionaryRepository::getInstance()->findByName($request)->first(['*'])],
                     'error_messages' => []
                 ], Response::HTTP_OK
             );

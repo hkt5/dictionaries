@@ -19,6 +19,16 @@ class ForceDeleteDictionaryItemController extends Controller
         $this->strategy = $strategy;
     }
 
+    /**
+     * Force delete dictionary item.
+     *
+     * @bodyParam id integer required The id of dictionary item.
+     *
+     * @response 400 {"content":[],"error_messages":{"id":["The id field is required."]}}
+     * @response 400 {"content":[],"error_messages":{"id":["The id must be an integer."]}}
+     * @response 400 {"content":[],"error_messages":{"id":["The selected id is invalid."]}}
+     * @response 200 {"content":{"dictionary_item":{}},"error_messages":[]}
+     */
     public function forceDelete(Request $request) : JsonResponse
     {
 

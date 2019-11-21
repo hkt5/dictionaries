@@ -47,7 +47,7 @@ class FindTrashedDictionaryByIdStrategy implements StrategyInterface
 
             return response()->json(
                 [
-                    'content' => ['dictionary' => DictionaryRepository::getInstance()->findTrashedById($request)], 'error_messages' => [],
+                    'content' => ['dictionary_item' => DictionaryRepository::getInstance()->findTrashedById($request)], 'error_messages' => [],
                 ], Response::HTTP_OK
             );
         }
