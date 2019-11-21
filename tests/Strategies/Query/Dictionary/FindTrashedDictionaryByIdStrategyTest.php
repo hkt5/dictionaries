@@ -111,7 +111,7 @@ class FindTrashedDictionaryByIdStrategyTest extends TestCase
 
         // then
         $this->assertEquals(Response::HTTP_OK, $result->status());
-        $this->assertEmpty(json_decode($result->content(), true)['content']['dictionary']);
+        $this->assertEmpty(json_decode($result->content(), true)['content']['dictionary_item']);
     }
 
     public function testFindTrashedDictionaryByIdWhenIdExistingAndDictionaryIsTrashed() : void
@@ -135,6 +135,6 @@ class FindTrashedDictionaryByIdStrategyTest extends TestCase
 
         // then
         $this->assertEquals(Response::HTTP_OK, $result->status());
-        $this->assertNotEmpty(json_decode($result->content(), true)['content']['dictionary']);
+        $this->assertNotEmpty(json_decode($result->content(), true)['content']['dictionary_item']);
     }
 }

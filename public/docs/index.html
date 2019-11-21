@@ -1,0 +1,1719 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/all.js"></script>
+
+
+          <script>
+        $(function() {
+            setupLanguages(["bash","javascript"]);
+        });
+      </script>
+      </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+        <img src="images/logo.png" />
+                    <div class="lang-selector">
+                                  <a href="#" data-language-name="bash">bash</a>
+                                  <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+                            <div class="search">
+              <input type="text" class="search" id="input-search" placeholder="Search">
+            </div>
+            <ul class="search-results"></ul>
+              <div id="toc">
+      </div>
+                    <ul class="toc-footer">
+                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
+                            </ul>
+            </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+          <!-- START_INFO -->
+<h1>Info</h1>
+<p>Welcome to the generated API reference.
+<a href="http://localhost/docs/collection.json">Get Postman Collection</a></p>
+<!-- END_INFO -->
+<h1>general</h1>
+<!-- START_53be1e9e10a08458929a2e0ea70ddb86 -->
+<h2>Find all dictionaries.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "/" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [
+        {
+            "id": 1,
+            "name": "dictionary",
+            "deleted_at": null,
+            "created_at": "2019-11-20 20:38:14",
+            "updated_at": "2019-11-20 20:38:14"
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /</code></p>
+<!-- END_53be1e9e10a08458929a2e0ea70ddb86 -->
+<!-- START_5975a6c0572c50995bd4fc405aeb7a92 -->
+<h2>Find dictionary by id.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "/find-by-id/1?id=nam" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/find-by-id/1"
+);
+
+let params = {
+    "id": "nam",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary": {
+            "dictionary": {
+                "id": 1,
+                "name": "dictionary",
+                "deleted_at": null,
+                "created_at": "2019-11-21 18:13:30",
+                "updated_at": "2019-11-21 18:13:30"
+            },
+            "items": [
+                {
+                    "id": 1,
+                    "name": "dictionary",
+                    "dictionary_id": 1,
+                    "deleted_at": null,
+                    "created_at": "2019-11-21 18:13:30",
+                    "updated_at": "2019-11-21 18:13:30"
+                }
+            ]
+        }
+    },
+    "error_messages": []
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The selected id is invalid."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "message": "",
+        "code": 0
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "message": "Argument 2 passed to App\\Http\\Controllers\\FindDictionaryByIdController::findById() must be of the type int, string given",
+        "code": 0
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /find-by-id/{id}</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>optional</td>
+<td>integer required The id of dictionary.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_5975a6c0572c50995bd4fc405aeb7a92 -->
+<!-- START_4318c91e99ead36179d3d1c70e3cf940 -->
+<h2>Find dictionary by name.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "/find-by-name/1?name=debitis" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/find-by-name/1"
+);
+
+let params = {
+    "name": "debitis",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary": {
+            "id": 1,
+            "name": "dictionary",
+            "deleted_at": null,
+            "created_at": "2019-11-21 18:19:37",
+            "updated_at": "2019-11-21 18:19:37"
+        }
+    },
+    "error_messages": []
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "message": "",
+        "code": 0
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "name": [
+            "The selected name is invalid."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /find-by-name/{name}</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>optional</td>
+<td>string required The name of dictionary.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_4318c91e99ead36179d3d1c70e3cf940 -->
+<!-- START_186f1bf97b31a54332e14fc7289acc56 -->
+<h2>Find trashed dictionaries.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "/find-trashed" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/find-trashed"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": []
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [
+        {
+            "id": 1,
+            "name": "dictionary",
+            "deleted_at": "2019-11-21 18:36:19",
+            "created_at": "2019-11-21 18:36:19",
+            "updated_at": "2019-11-21 18:36:19"
+        }
+    ],
+    "error_messages": []
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /find-trashed</code></p>
+<!-- END_186f1bf97b31a54332e14fc7289acc56 -->
+<!-- START_3334af40e9256fd67714367142d3dcc2 -->
+<h2>Find trashed dictionary by id.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "/find-trashed/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/find-trashed/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary_item": [
+            {
+                "id": 2,
+                "name": "dictionary 2",
+                "deleted_at": "2019-11-21 19:02:46",
+                "created_at": "2019-11-21 19:02:45",
+                "updated_at": "2019-11-21 19:02:46"
+            }
+        ]
+    },
+    "error_messages": []
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary_item": []
+    },
+    "error_messages": []
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "message": "Argument 2 passed to App\\Http\\Controllers\\FindTrashedDictionaryByIdController::findTrashed() must be of the type int, string given",
+        "code": 0
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The selected id is invalid."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /find-trashed/{id}</code></p>
+<!-- END_3334af40e9256fd67714367142d3dcc2 -->
+<!-- START_b2b17caeb5a3fef742b0a1e1857d4f77 -->
+<h2>Find all dctionary items.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "/dictionary-items" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/dictionary-items"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [
+        {
+            "id": 1,
+            "name": "hello",
+            "dictionary_id": 1,
+            "deleted_at": null,
+            "created_at": "2019-11-20 20:42:23",
+            "updated_at": "2019-11-20 20:42:23"
+        }
+    ],
+    "error_messages": []
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /dictionary-items</code></p>
+<!-- END_b2b17caeb5a3fef742b0a1e1857d4f77 -->
+<!-- START_96fb3354c54f474170591c68c03de7f1 -->
+<h2>Find dictionary item by id.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "/dictionary-items/find-by-id/1?id=ea" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/dictionary-items/find-by-id/1"
+);
+
+let params = {
+    "id": "ea",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary_item": {
+            "id": 1,
+            "name": "item",
+            "dictionary_id": 1,
+            "deleted_at": null,
+            "created_at": "2019-11-21 18:30:11",
+            "updated_at": "2019-11-21 18:30:11"
+        },
+        "error_messages": []
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "message": "",
+        "code": 0
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "message": "Argument 2 passed to App\\Http\\Controllers\\FindDictionaryItemByIdController::findById() must be of the type int, string given",
+        "code": 0
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The selected id is invalid."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /dictionary-items/find-by-id/{id}</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>optional</td>
+<td>integer required The id of dictionary item.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_96fb3354c54f474170591c68c03de7f1 -->
+<!-- START_39c27211b8d428339cbd19f55800d330 -->
+<h2>Find trashed dictionary items.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "/dictionary-items/find-trashed" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/dictionary-items/find-trashed"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [
+        {
+            "id": 1,
+            "name": "item",
+            "dictionary_id": 1,
+            "deleted_at": "2019-11-21 19:25:27",
+            "created_at": "2019-11-21 19:25:27",
+            "updated_at": "2019-11-21 19:25:27"
+        }
+    ],
+    "error_messages": []
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /dictionary-items/find-trashed</code></p>
+<!-- END_39c27211b8d428339cbd19f55800d330 -->
+<!-- START_3304d3fa58395c56d3d612be60414d62 -->
+<h2>Find trashed dictionary item.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "/dictionary-items/find-single-trashed/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/dictionary-items/find-single-trashed/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [
+        {
+            "id": 1,
+            "name": "hello",
+            "dictionary_id": 1,
+            "deleted_at": "2019-11-21 19:20:48",
+            "created_at": "2019-11-21 19:20:48",
+            "updated_at": "2019-11-21 19:20:48"
+        }
+    ],
+    "error_messages": []
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "message": "",
+        "code": 0
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "message": "Argument 2 passed to App\\Http\\Controllers\\FindTrashedDictionaryItemController::find() must be of the type int, string given",
+        "code": 0
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /dictionary-items/find-single-trashed/{id}</code></p>
+<!-- END_3304d3fa58395c56d3d612be60414d62 -->
+<!-- START_bc05019f8e3ad49eb15ba5bad0647e7f -->
+<h2>Create dictionary.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "/create" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"name":"rem"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/create"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "rem"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary": {
+            "name": "dictionary 1",
+            "created_at": "2019-11-20 20:03:16",
+            "updated_at": "2019-11-20 20:03:16",
+            "id": 2
+        }
+    },
+    "error_messages": []
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "name": [
+            "The name field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "name": [
+            "The name must be a string."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "name": [
+            "The name has already been taken."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST /create</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>required</td>
+<td>The name of dictionary.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_bc05019f8e3ad49eb15ba5bad0647e7f -->
+<!-- START_6789a831c5e460159749a3905733c96d -->
+<h2>Create dictionary item.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "/dictionary-item/create" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/dictionary-item/create"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary_item": {
+            "name": "item 2",
+            "dictionary_id": 1,
+            "updated_at": "2019-11-20 20:12:53",
+            "created_at": "2019-11-20 20:12:53",
+            "id": 2
+        }
+    },
+    "error_messages": []
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "name": [
+            "The name field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "name": [
+            "The name must be a string."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "dictionary_id": [
+            "The dictionary id field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "dictionary_id": [
+            "The dictionary id must be an integer."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "dictionary_id": [
+            "The selected dictionary id is invalid."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST /dictionary-item/create</code></p>
+<!-- END_6789a831c5e460159749a3905733c96d -->
+<!-- START_f90b1960c1622f7df69bf8460be5930c -->
+<h2>Update dictionary controller.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "/update" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":14,"name":"et"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/update"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 14,
+    "name": "et"
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id must be an integer."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The selected id is invalid."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "name": [
+            "The name field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "name": [
+            "The name must be a string."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "name": [
+            "The name has already been taken."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary": {
+            "id": 1,
+            "name": "dictionary 1",
+            "deleted_at": null,
+            "created_at": "2019-11-21 20:31:50",
+            "updated_at": "2019-11-21 20:31:50"
+        }
+    },
+    "error_messages": []
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT /update</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>Id of dictionary.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>required</td>
+<td>Name of dictionary.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_f90b1960c1622f7df69bf8460be5930c -->
+<!-- START_08ff48fe28ed0136b4f8fc0e28bc29d6 -->
+<h2>Restore dictionary.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "/restore" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":1}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/restore"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 1
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id must be an integer."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The selected id is invalid."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionaries": {
+            "id": 1,
+            "name": "dictionary",
+            "deleted_at": null,
+            "created_at": "2019-11-21 20:05:29",
+            "updated_at": "2019-11-21 20:05:29"
+        }
+    },
+    "error_messages": []
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT /restore</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<!-- END_08ff48fe28ed0136b4f8fc0e28bc29d6 -->
+<!-- START_1caca231df98748efcfd16eebf8254c5 -->
+<h2>Update dictionary item.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "/dictionary-item/update" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":15,"name":"eum","dictionary_id":1}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/dictionary-item/update"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 15,
+    "name": "eum",
+    "dictionary_id": 1
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The selected id is invalid."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "name": [
+            "The name field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "name": [
+            "The name must be a string."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "dictionary_id": [
+            "The dictionary id field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "dictionary_id": [
+            "The dictionary id must be an integer."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "dictionary_id": [
+            "The selected dictionary id is invalid."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary": {
+            "id": 1,
+            "name": "item",
+            "dictionary_id": 1,
+            "deleted_at": null,
+            "created_at": "2019-11-21 20:53:10",
+            "updated_at": "2019-11-21 20:53:10"
+        }
+    },
+    "error_messages": []
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary": {
+            "id": 1,
+            "name": "item",
+            "dictionary_id": 1,
+            "deleted_at": null,
+            "created_at": "2019-11-21 20:51:59",
+            "updated_at": "2019-11-21 20:51:59"
+        }
+    },
+    "error_messages": []
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT /dictionary-item/update</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>Id of dictionary item.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>required</td>
+<td>The name of dictionary item.</td>
+</tr>
+<tr>
+<td><code>dictionary_id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>The name of dictionary item.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_1caca231df98748efcfd16eebf8254c5 -->
+<!-- START_faf95f11d1dd211508bed8cb2716d909 -->
+<h2>Restore dictionary item.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "/dictionary-item/restore" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":19}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/dictionary-item/restore"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 19
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id must be an integer."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The selected id is invalid."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary_item": {},
+        "error_messages": []
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT /dictionary-item/restore</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>The id of dictionary id.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_faf95f11d1dd211508bed8cb2716d909 -->
+<!-- START_d3e7f6f3258fb1a0d0fc066c0c8eba5c -->
+<h2>Delete dictionary.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "/delete" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/delete"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary": {
+            "id": 1,
+            "name": "dictionary",
+            "deleted_at": "2019-11-20 20:24:18",
+            "created_at": "2019-11-20 20:24:17",
+            "updated_at": "2019-11-20 20:24:18"
+        }
+    },
+    "error_messages": []
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id must be an integer."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The selected id is invalid."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE /delete</code></p>
+<!-- END_d3e7f6f3258fb1a0d0fc066c0c8eba5c -->
+<!-- START_c273d4a8e8476bea9a8b6f82650c0f18 -->
+<h2>Force delete dictionary.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "/force-delete" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":19}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/force-delete"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 19
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id must be an integer."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The selected id is invalid."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary": {}
+    },
+    "error_messages": []
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE /force-delete</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>The id of dictionary.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_c273d4a8e8476bea9a8b6f82650c0f18 -->
+<!-- START_272389599eaf2d349ad9e5012f80286a -->
+<h2>Delete dictionary item.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "/dictionary-item/delete" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/dictionary-item/delete"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary_item": {
+            "id": 1,
+            "name": "item",
+            "dictionary_id": 1,
+            "deleted_at": "2019-11-20 20:36:22",
+            "created_at": "2019-11-20 20:36:20",
+            "updated_at": "2019-11-20 20:36:22"
+        }
+    },
+    "error_messages": []
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id must be an integer."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The selected id is invalid."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE /dictionary-item/delete</code></p>
+<!-- END_272389599eaf2d349ad9e5012f80286a -->
+<!-- START_199d40312c7892b28ba792fc59d6c33b -->
+<h2>Force delete dictionary item.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "/dictionary-item/force-delete" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":19}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "/dictionary-item/force-delete"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 19
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id field is required."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The id must be an integer."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": [],
+    "error_messages": {
+        "id": [
+            "The selected id is invalid."
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "content": {
+        "dictionary_item": {}
+    },
+    "error_messages": []
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE /dictionary-item/force-delete</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>The id of dictionary item.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_199d40312c7892b28ba792fc59d6c33b -->
+      </div>
+      <div class="dark-box">
+                        <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                              </div>
+                </div>
+    </div>
+  </body>
+</html>

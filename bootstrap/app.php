@@ -21,11 +21,11 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
+$app->configure('apidoc');
+
 $app->withFacades();
 
 $app->withEloquent();
-
-$app->configure('apidoc');
 
 /*
 |--------------------------------------------------------------------------
